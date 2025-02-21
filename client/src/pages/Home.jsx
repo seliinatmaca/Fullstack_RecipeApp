@@ -16,16 +16,15 @@ const Home = () => {
   // api'a gönderilecek parametreleri belirle
   const params = {
     order,
+    // search:searchTerm
     search: debouncedTerm,
   };
-
+  console.log("aratılan kelim e stati", searchTerm);
   // api'dan tarif verilerini al
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["recipes", order, debouncedTerm],
     queryFn: () =>
-      api
-        .get("/api/v1/recipes", { params })
-        .then((res) => res.data.recipes),
+      api.get("/api/v1/recipes", { params }).then((res) => res.data.recipes),
   });
 
   return (
@@ -40,9 +39,7 @@ const Home = () => {
         ) : (
           <>
             <div className="flex justify-between items-center">
-              <h1 className="text-3xl my-5">
-                {data.length} tarif bulundu
-              </h1>
+              <h1 className="text-3xl my-5">{data.length} tarif bulundu</h1>
 
               <Sort setOrder={setOrder} />
             </div>

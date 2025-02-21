@@ -16,7 +16,7 @@ const Update = () => {
     queryFn: () =>
       api.get(`/api/v1/recipes/${id}`).then((res) => res.data.found),
   });
-
+  console.log(data);
   // api'a güncelleme isteği atıcak mutasyonu hazırla
   const { isLoading, mutate } = useMutation({
     mutationFn: (updatedData) =>

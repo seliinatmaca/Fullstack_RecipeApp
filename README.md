@@ -30,3 +30,4 @@
 - react-icons
 - react-toastify
 - tailwind
+- @uidotdev/usehooks

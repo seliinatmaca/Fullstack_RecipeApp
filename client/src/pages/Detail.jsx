@@ -18,7 +18,7 @@ const Detail = () => {
     queryFn: () =>
       api.get(`/api/v1/recipes/${id}`).then((res) => res.data.found),
   });
-
+  console.log(data);
   return (
     <div className="max-w-2xl mx-auto">
       <div className="flex items-center  justify-between mb-10">
@@ -107,3 +107,19 @@ const Detail = () => {
 };
 
 export default Detail;
+
+{
+  /* <div>
+      {
+        isLoading
+        ? "loader"
+          : error
+        ?"error"
+            :data && (
+              <div>
+                <h1> {data.recipeName} </h1>
+              </div>
+            )
+      }
+</div> */
+}

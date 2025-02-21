@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import Select from "react-select/creatable";
 
 const Form = ({ isLoading, mutate, recipeData }) => {
-  const [ingredients, setIngredients] = useState(
-    recipeData?.ingredients || []
-  );
+  const [ingredients, setIngredients] = useState(recipeData?.ingredients || []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,11 +12,16 @@ const Form = ({ isLoading, mutate, recipeData }) => {
     const formData = new FormData(e.target);
     let newRecipe = Object.fromEntries(formData.entries());
 
+    console.log(newRecipe);
+
     // adımları ',' e göre diziye çevir
     newRecipe.instructions = newRecipe.instructions.split(",");
 
+    console.log(newRecipe);
+
     // malzemeleri nesneye ekle
     newRecipe.ingredients = ingredients;
+    console.log(newRecipe);
 
     // eğerki düzenlem modundaysak newRecipe içerise id değerinide ekle
     if (recipeData) {
@@ -29,6 +32,7 @@ const Form = ({ isLoading, mutate, recipeData }) => {
     mutate(newRecipe);
   };
 
+  console.log(ingredients);
   return (
     <form
       onSubmit={handleSubmit}
@@ -63,6 +67,7 @@ const Form = ({ isLoading, mutate, recipeData }) => {
       </Field>
 
       <Field label="Malzemeler">
+        {/* <Select isMulti onChange={(options)=>setIngredients(options)}/> */}
         <Select
           isMulti
           value={ingredients.map((i) => ({ value: i, label: i }))}
